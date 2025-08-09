@@ -1,0 +1,30 @@
+
+name: package
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: go-socks5-proxy
+    steps:
+      - uses: actions/checkout@v4
+      - name: Log into github registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Build and Push image for github
+        run: |
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          # Change all uppercase to lowercase
+          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          # Get version
+          VERSION=$(git rev-parse --short=8 HEAD)
+          echo "Building image $IMAGE_ID:$VERSION"
+          docker build . --file Dockerfile --tag $IMAGE_ID:$VERSION
+          docker tag $IMAGE_ID:$VERSION $IMAGE_ID:latest
+          # Push image to GitHub Packages.
+          docker push --all-tags $IMAGE_ID

@@ -1,13 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased - available on :latest tag for docker image]
+## [v1.0.0]
+### Simplified
+- update lib
+- removed useless staff
+- added github packaging
+
 ### Changed
 - Migrate to distroless docker image from scratch
-- 
+
 ### Added
-- New ALLOWED_DEST_FQDN config env paramteter for filtering dest FQND based on regex patterns
-- New SetIPWhitelist config env paramteter for setting whitelist set of ip addresses which allowed to use proxy connection 
+- New ALLOWED_DEST_FQDN config env parameter for filtering dest FQND based on regex patterns
+- New SetIPWhitelist config env parameter for setting whitelist set of ip addresses which allowed to use proxy connection
 - Dependabot version updates automation
 
 ## [v0.0.3] - 2021-07-07
