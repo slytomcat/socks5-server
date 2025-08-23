@@ -15,7 +15,7 @@ Simple socks5 server using go-socks5 with authentication
 
 - Run docker container using specific container port and expose it to host port 1090, without auth credentials
 
-    ```docker run -d --name socks5 -p 1090:9090 -e PROXY_PORT=9090 ghcr.io/slytomcat/go-socks5-proxy```
+    ```docker run -d --name socks5 -p 1090:9090 -e PROXY_PORT=1090 ghcr.io/slytomcat/go-socks5-proxy```
 
 # List of supported config parameters
 
